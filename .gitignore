@@ -36,6 +36,7 @@ env.conf
 app.conf
 
 # Demo specific
+app
 app-liBot
 
 # build script local files
