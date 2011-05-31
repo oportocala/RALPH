@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<vendor>
+    <orm>
+        <doctrine1 path="lib/Doctrine.php"/>
+    </orm>
+    <js>
+        
+    </js>
+    <img>
+        <PHPThumb path="ThumbBase.inc.php" />
+    </img>
+</vendor>

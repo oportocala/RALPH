@@ -1,0 +1,9 @@
+Language:
+ tableName: ralph_languages
+ package: ralph/languages
+
+ columns:
+  code: string(5)
+  name: string(255)
+  status: integer(5)
+  order: integer(8)

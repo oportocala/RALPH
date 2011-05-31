@@ -1,0 +1,11 @@
+Language:
+ EN:
+  code: 'EN'
+  name: 'English'
+  status: 1
+  order: 1
+ RO:
+  code: 'RO'
+  name: 'Romanian'
+  status: 1
+  order: 2

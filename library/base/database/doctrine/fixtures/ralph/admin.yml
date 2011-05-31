@@ -1,0 +1,12 @@
+AdminGroups:
+ Admins:
+  id: 1
+  name: 'Administrators'
+  
+AdminUser:
+ Admin:
+  id: 1
+  username: 'admin'
+  password: 'admin'
+  email: 'admin@localhost.com'
+  Group: Admins

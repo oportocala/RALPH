@@ -1,0 +1,30 @@
+RoutesStatic:
+ tableName: ralph_routes_static
+ package: ralph/routes/
+ columns:
+  slug: string(255)
+  layout: 
+    type: string(255)
+    default: 'frontend'
+  page: string(255)
+  params: string(255)
+  
+  
+RoutesRedirect:
+ tableName: ralph_routes_redirect
+ package: ralph/routes
+ actAs:
+  Searchable:
+   fields: [old]
+   className: 'Ralph%CLASS%Index'
+ columns:
+  old: string(255)
+  new: string(255)
+  type: 
+   type: enum
+   values: ['301', '302']
+   length: 3
+   default: '302'
+   
+   
+   

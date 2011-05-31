@@ -1,0 +1,8 @@
+RoutesSections:
+ ExampleRoute1:
+  name: 'books'
+  foreign_table: 'books'
+  layout: 'frontend'
+  page: 'books/item.php'
+  path: 'book'
+  id_param_name: 'id'

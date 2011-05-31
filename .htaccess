@@ -1,0 +1,34 @@
+# DENIED
+<Files app.conf>
+    deny from all
+</Files>
+
+# REWRITE
+<IfModule mod_rewrite.c>
+    RewriteEngine on
+
+# Forbid git
+    RewriteRule ^(.*/)?\.git/ - [F,L]
+
+# Layouts:
+	RewriteRule ^(admin|script|services|sandbox|fbapp)/(.*)$ app-liBot/pages/$1/$2 [L]
+
+    # TODO: public routing
+
+	# Default Layout
+    RewriteCond  %{REQUEST_FILENAME} -f [OR]
+	RewriteCond  %{ENV:REDIRECT_STATUS} 200
+	RewriteRule .* - [L]
+    RewriteRule ^(.*)$ app-liBot/pages/frontend/$1 [L]
+
+
+
+
+# Reouter:
+	RewriteCond %{REQUEST_FILENAME} -f [OR]
+	RewriteCond %{REQUEST_FILENAME} -d
+	RewriteRule .* - [L]
+	RewriteRule ^(.*)$ library/router.php?_router_query=%{REQUEST_URI} [QSA]
+
+
+</IfModule>

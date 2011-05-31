@@ -1,0 +1,49 @@
+RewriteEngine on
+
+<Files app.conf>
+    deny from all
+</Files>
+
+SetEnv app app-liBot
+
+    RewriteRule ^(.*)$ app-liBot/public/$1 [L]
+
+# No SVN:
+	RewriteRule ^(.*/)?\.svn/ - [F,L]
+	RewriteRule ^(.*/)?\.git/ - [F,L]
+
+# Shortcuts:
+	# JS libs: /include/js/(internal|external)
+	# jsi - javascript lib internal
+	# jse - javascript lib external
+	RewriteRule ^jsi/(.*)$	app/layouts/!resources/js/internal/$1 [L]
+	RewriteRule ^jse/(.*)$ 	app/layouts/!resources/js/external/$1 [L]
+	# Icons
+	RewriteRule ^icn/(.*)$ 	app/layouts/!resources/images/icons/$1 [L]
+	# Resources
+	RewriteRule ^r/(.*)$ 	app/layouts/!resources/$1 [L]
+	RewriteRule ^layouts/(.*)$ app/layouts/$1 [L]
+
+# Captcha
+	RewriteRule ^captcha/(.*).jpg$ app/includes/libs/external/securimage/securimage_show.php?sid=$1 [L]
+
+
+
+
+# Layouts:
+	RewriteRule ^(admin|script|services|sandbox|fbapp)/(.*)$ app-liBot/pages/$1/$2 [L]
+
+	# Default Layout
+    RewriteCond  %{REQUEST_FILENAME} -f [OR]
+	RewriteCond  %{ENV:REDIRECT_STATUS} 200
+	RewriteRule .* - [L]
+    RewriteRule ^(.*)$ app-liBot/pages/frontend/$1 [L]
+
+
+
+
+# Reouter:
+	RewriteCond %{REQUEST_FILENAME} -f [OR]
+	RewriteCond %{REQUEST_FILENAME} -d
+	RewriteRule .* - [L]
+	RewriteRule ^(.*)$ library/router.php?_router_query=%{REQUEST_URI} [QSA]
